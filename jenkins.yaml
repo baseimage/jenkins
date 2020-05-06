@@ -1,0 +1,20 @@
+jenkins:
+  systemMessage: "Jenkins configured automatically by Jenkins Configuration as Code plugin\n\n"
+  securityRealm:
+    local:
+      allowsSignup: false
+      enableCaptcha: false
+      users:
+      - id: "root"
+        name: "root"
+        password: "root@example.org"
+        properties:
+        - "apiToken"
+        - "userCommunityProperty"
+        - mailer:
+            emailAddress: "root@example.org"
+        - preferredProvider:
+            providerId: "default"
+unclassified:
+  casCGlobalConfig:
+    configurationPath: "https://raw.githubusercontent.com/olddrivers/example/master/jenkins.yaml"
