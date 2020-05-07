@@ -6,5 +6,12 @@ FROM jenkins/jenkins:lts
 #COPY jenkins.yaml ${CASC_JENKINS_CONFIG}
 
 #USER jenkins
+COPY jenkins-plugin /usr/share/jenkins/ref/jenkins-plugin
 
-RUN /usr/local/bin/install-plugins.sh configuration-as-code configuration-as-code-support 
+ENV JENKINS_HOME /var/jenkins_home
+
+ARG JAVA_OPTS
+ENV JAVA_OPTS "-Djenkins.install.runSetupWizard=false ${JAVA_OPTS:-}"
+
+#RUN /usr/local/bin/install-plugins.sh configuration-as-code configuration-as-code-support 
+RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/jenkins-plugin
